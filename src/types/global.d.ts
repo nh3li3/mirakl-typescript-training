@@ -1,3 +1,11 @@
+declare global {
+  namespace Empty {
+    export type String = "";
+    export type Object = Record<string, never>;
+    export type Array = never[];
+  }
+}
+
 type GetEventHandlers<T extends keyof JSX.IntrinsicElements> = Extract<
   keyof JSX.IntrinsicElements[T],
   `on${string}`

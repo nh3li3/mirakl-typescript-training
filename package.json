@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^3.11.0"
   },
   "devDependencies": {
     "@type-challenges/utils": "^0.1.1",
