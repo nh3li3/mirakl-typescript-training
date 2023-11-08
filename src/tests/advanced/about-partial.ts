@@ -7,7 +7,7 @@ interface Todo {
   completed: boolean;
 }
 
-interface Expected1 {
+interface Expected {
   title?: string;
   description?: string;
   completed?: boolean;
@@ -19,10 +19,10 @@ interface Expected1 {
  * TODO: Write your own utility types Partial
  */
 
-type MyPartial<T> = { [P in keyof T]?: T[P] };
+type MyPartial = unknown;
 
 /**
  * THEN
  */
 
-type cases = [Expect<Equal<Expected1, MyPartial<Todo>>>];
+type cases = [Expect<Equal<MyPartial<Todo>, Expected>>];

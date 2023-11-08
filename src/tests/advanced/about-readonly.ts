@@ -7,13 +7,13 @@ interface Todo {
   completed: boolean;
 }
 
-interface Expected1 {
+interface Expected {
   readonly title: string;
   readonly description: string;
   readonly completed: boolean;
 }
 
-const immutableObject: Expected1 = {
+const immutableObject: Expected = {
   title: "title",
   description: "description",
   completed: true,
@@ -26,13 +26,13 @@ const immutableObject: Expected1 = {
  * to mark each property of un object as readonly
  */
 
-type MyReadOnly<T> = { readonly [P in keyof T]: T[P] };
+type MyReadOnly = unknown;
 
 /**
  * THEN
  */
 
-type cases = [Expect<Equal<Expected1, MyReadOnly<Todo>>>];
+type cases = [Expect<Equal<MyReadOnly<Todo>, Expected>>];
 
 // @ts-expect-error because this object is immuable
 immutableObject.completed = false;

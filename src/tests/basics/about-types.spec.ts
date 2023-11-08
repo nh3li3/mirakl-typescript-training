@@ -1,8 +1,8 @@
 describe("TS types", () => {
   it("should be the same as in JavaScript for primitve types", () => {
-    const aBoolean: boolean = true;
-    const aString: string = "abc";
-    const aNumber: number = 42;
+    const aBoolean: _ = _;
+    const aString: _ = _;
+    const aNumber: _ = _;
 
     expect(aBoolean).toBeTruthy();
     expect(aString).toEqual("abc");
@@ -10,46 +10,36 @@ describe("TS types", () => {
   });
 
   it("should have a special notation for arrays", () => {
-    const aList: number[] = [1, 2, 3];
+    const aList: _ = _;
 
     expect(aList).toMatchObject([1, 2, 3]);
   });
 
   it("should allow for putting different things in an array", () => {
-    const aList: (string | number)[] = [1, "2"];
+    const aList: _ = _;
 
     expect(aList).toMatchObject([1, "2"]);
   });
 
   it("should have a notation for tuples (fixed sized arrays)", () => {
-    const aTemperature: [number, "C" | "F"] = [32, "F"];
+    const aTemperature: _ = _;
 
-    // descructuring declaration - we'll cover this soon
+    // descructuring declaration like useState of React
     const [val, unit] = aTemperature;
     expect(val).toEqual(32);
     expect(unit).toEqual("F");
   });
 
-  it("include enum types", () => {
-    enum myFirstEnum {
-      red,
-      blue = 2,
-    }
-
-    expect(myFirstEnum.red).toEqual(0);
-    expect(myFirstEnum[2]).toEqual("blue");
-  });
-
   it("should help you with null and undefined", () => {
-    const nullable: string | null = null;
-    const undefinable: number | undefined = undefined;
+    const stringNullable: string = _;
+    const numberUndefinable: number = _;
 
-    expect(nullable).toBeNull();
-    expect(undefinable).toBeUndefined();
+    expect(stringNullable).toBeNull();
+    expect(numberUndefinable).toBeUndefined();
   });
 
   it("should allow for typing function arguments too", () => {
-    function sayHello(name: string) {
+    function sayHello(name: _) {
       return "Hello ".concat(name);
     }
     expect(sayHello("TypeScript")).toEqual("Hello TypeScript");

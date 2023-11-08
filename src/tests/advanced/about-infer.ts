@@ -10,7 +10,7 @@ type Arr = ["firstArg", "secondArg", "thidArg", "fourthArg"];
  * to retrieve the value at the index 0
  */
 
-type First<T extends any[]> = T extends [infer A, ...infer _rest] ? A : never;
+type First = unknown;
 
 /**
  * THEN

@@ -14,7 +14,7 @@ type TUnionAfterExclude = "MARKETPLACE" | "MIRAKL";
  *  Works for Union types
  */
 
-type MyExclude<T, U extends T> = T extends U ? never : T;
+type MyExclude = unknown;
 
 /**
  * THEN

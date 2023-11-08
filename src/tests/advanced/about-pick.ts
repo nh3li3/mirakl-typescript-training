@@ -22,15 +22,15 @@ interface Expected2 {
  * TODO: Write your own utility types pick
  */
 
-type MyPick<T, Keys extends keyof T> = { [P in Keys]: T[P] };
+type MyPick = unknown;
 
 /**
  * THEN
  */
 
 type cases = [
-  Expect<Equal<Expected1, MyPick<Todo, "title">>>,
-  Expect<Equal<Expected2, MyPick<Todo, "title" | "completed">>>,
+  Expect<Equal<MyPick<Todo, "title">, Expected1>>,
+  Expect<Equal<MyPick<Todo, "title" | "completed">, Expected2>>,
   // @ts-expect-error
   MyPick<Todo, "title" | "completed" | "invalid">,
 ];
