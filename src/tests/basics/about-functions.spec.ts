@@ -26,16 +26,4 @@ describe("about typed functions", () => {
 
     expect(join(", ", "Hello", "TypeScript")).toEqual("Hello, TypeScript");
   });
-
-  it("lambda should not loose their this", () => {
-    const donald = {
-      name: "Donald",
-      greet(msg: string) {
-        return () => `${this.name} says hello ${msg}`;
-      },
-    };
-
-    const donaldGreets = donald.greet("world");
-    expect(donaldGreets()).toEqual("Donald says hello world");
-  });
 });

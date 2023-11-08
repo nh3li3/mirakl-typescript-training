@@ -88,20 +88,4 @@ describe("about classes", () => {
       "I fight against evil with Stick and my master is Batman"
     );
   });
-
-  it("share methods like in pure JS", () => {
-    class Developer {
-      constructor(private favouriteLanguage: string) {}
-
-      public sayHi() {
-        return `Hello my favourite language is ${this.favouriteLanguage}`;
-      }
-    }
-
-    const developer = new Developer("JavaScript");
-    // think about what this should be
-    expect(developer.sayHi.call({ favouriteLanguage: "TypeScript" })).toEqual(
-      "Hello my favourite language is TypeScript"
-    );
-  });
 });

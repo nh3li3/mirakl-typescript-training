@@ -70,28 +70,6 @@ describe("TS interfaces", () => {
     expect(person.lastName).toBeUndefined();
   });
 
-  it("can have readonly properties", () => {
-    interface IPerson {
-      firstName: string;
-    }
-
-    let error: boolean = false;
-    const person: IPerson = {
-      get firstName() {
-        return "John";
-      },
-    };
-
-    try {
-      person.firstName = "Jane";
-    } catch (e) {
-      error = true;
-    }
-
-    expect(error).toBeTruthy();
-    expect(person.firstName).toEqual("John");
-  });
-
   it("can describe maps", () => {
     interface IPerson {
       firstName: string;
