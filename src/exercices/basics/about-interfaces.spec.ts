@@ -5,9 +5,9 @@ describe("TS interfaces", () => {
   });
 
   it("can be declared just as JS bindings", () => {
-    interface _ {
+    type _ = {
       _: _;
-    }
+    };
 
     const person: _ = _;
     expect(person.lastName).toEqual("Doe");
@@ -31,9 +31,9 @@ describe("TS interfaces", () => {
   });
 
   it("should be extendable with the extends keyword", () => {
-    interface IPerson {
+    type Person = {
       gender: "male" | "female" | "other";
-    }
+    };
 
     interface _ extends _ {
       _: _;
@@ -49,12 +49,12 @@ describe("TS interfaces", () => {
   });
 
   it("can have optional properties", () => {
-    interface IPerson {
+    type Person = {
       firstName: string;
       lastName?: string;
-    }
+    };
 
-    const person: IPerson = {
+    const person: Person = {
       firstName: _,
     };
 
@@ -67,14 +67,15 @@ describe("TS interfaces", () => {
   });
 
   it("can describe maps", () => {
-    interface IPerson {
+    type Person = {
       firstName: string;
-    }
-    interface _ {
-      _: _;
-    }
+    };
 
-    const contacts: IContacts = {
+    type _ = {
+      _: _;
+    };
+
+    const contacts: Contacts = {
       johnId: { firstName: _ },
       _: { _: "Jane" },
     };
