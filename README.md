@@ -23,3 +23,7 @@ npm test nameFiles
 
 ie: npm test about-classes.spec.ts
 ```
+
+## Config IntellIj for jest
+
+![Config jest IntellIJ](src/assets/config-jest-IJ.png)
