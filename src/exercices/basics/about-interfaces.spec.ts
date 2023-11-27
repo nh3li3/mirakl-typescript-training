@@ -1,4 +1,4 @@
-describe("TS interfaces", () => {
+describe("TS interfaces and type alias", () => {
   it("should describe the shape of an object", () => {
     const person: { firstName: string } = {
       firstName: "John",
