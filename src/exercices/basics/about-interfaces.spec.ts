@@ -70,13 +70,13 @@ describe("TS interfaces and type alias", () => {
     expect(person.lastName).toBeUndefined();
   });
 
-  it("can describe maps", () => {
+  it("can describe maps that each key should be suffixe by the string Id.", () => {
     type IPerson = {
       firstName: string;
     };
 
     type IContacts = {
-      [index: string]: IPerson;
+      [index: `${string}Id`]: IPerson;
     };
 
     const contacts: IContacts = {

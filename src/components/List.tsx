@@ -25,15 +25,15 @@ function List() {
     );
   };
 
-  const removeTodo = (id) => {
-    const removedArr = [...todos].filter((todo) => todo.id !== id);
+  const removeTodo = (todoId) => {
+    const removedArr = [...todos].filter((todo) => todo.id !== todoId);
 
     setTodos(removedArr);
   };
 
-  const completeTodo = (id) => {
+  const completeTodo = (todoId) => {
     const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
+      if (todo.id === todoId) {
         todo.isComplete = !todo.isComplete;
       }
       return todo;
