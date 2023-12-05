@@ -1,39 +1,40 @@
 import { useState } from "react";
-import Form from "./Form";
-import Todo from "./Todo";
+import Form, { FormProps } from "./Form";
+import Todo, { type TodoProps } from "./Todo";
+
+type Todos = TodoProps["todos"];
+type EditTodo = NonNullable<FormProps["edit"]>;
 
 function List() {
-  const [todos, setTodos] = useState<any>([]);
+  const [todos, setTodos] = useState<Todos>([]);
 
-  const addTodo = (todo) => {
+  const addTodo = (todo: EditTodo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
     }
 
     const newTodos = [todo, ...todos];
 
-    setTodos(newTodos);
+    setTodos(newTodos as Todos);
   };
 
-  const updateTodo = (todoId, newValue) => {
+  const updateTodo = (id: number, newValue: Todo) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
       return;
     }
 
-    setTodos((prev) =>
-      prev.map((item) => (item.id === todoId ? newValue : item))
-    );
+    setTodos((prev) => prev.map((item) => (item.id === id ? newValue : item)));
   };
 
-  const removeTodo = (todoId) => {
-    const removedArr = [...todos].filter((todo) => todo.id !== todoId);
+  const removeTodo = (id: number) => {
+    const removedArr = [...todos].filter((todo) => todo.id !== id);
 
     setTodos(removedArr);
   };
 
-  const completeTodo = (todoId) => {
+  const completeTodo = (id: number) => {
     const updatedTodos = todos.map((todo) => {
-      if (todo.id === todoId) {
+      if (todo.id === id) {
         todo.isComplete = !todo.isComplete;
       }
       return todo;

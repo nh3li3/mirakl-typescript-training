@@ -6,6 +6,14 @@ Execute the following commands
 npm i
 ```
 
+# Start project
+
+Execute the following commands
+
+```
+npm run dev
+```
+
 # Running test
 
 The test run with jest.

@@ -1,19 +1,39 @@
 import { useState } from "react";
-import TodoForm from "./Form";
+import TodoForm, { FormProps } from "./Form";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
 
-const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
-  const [edit, setEdit] = useState({
+const raise = (err: string): never => {
+  throw new Error(err);
+};
+
+type EditTodo = NonNullable<FormProps["edit"]>;
+
+type Todo = {
+  id: number;
+  text: string;
+  isComplete: boolean;
+};
+
+export type TodoProps = {
+  todos: Todo[];
+  completeTodo: (id: number) => void;
+  removeTodo: (id: number) => void;
+  updateTodo: (id: number, value: any) => void;
+};
+
+const Todo = ({ todos, completeTodo, removeTodo, updateTodo }: TodoProps) => {
+  const [edit, setEdit] = useState<EditTodo>({
     id: null,
-    label: "",
+    text: "",
   });
 
-  const submitUpdate = (value) => {
-    updateTodo(edit.id, value);
+  const submitUpdate = (value: EditTodo) => {
+    const id = raise("id mandatory");
+    updateTodo(id, value);
     setEdit({
       id: null,
-      label: "",
+      text: "",
     });
   };
 
@@ -39,7 +59,7 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
           className="delete-icon"
         />
         <TiEdit
-          onClick={() => setEdit({ id: todo.id, label: todo.text })}
+          onClick={() => setEdit({ id: todo.id, text: todo.text })}
           className="edit-icon"
         />
       </div>

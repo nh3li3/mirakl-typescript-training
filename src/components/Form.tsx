@@ -1,8 +1,25 @@
-import { useEffect, useState, useRef } from "react";
+import {
+  useEffect,
+  useState,
+  useRef,
+  ElementRef,
+  ComponentProps,
+  FormEvent,
+} from "react";
 
-export default function Form({ edit, onSubmit }: any) {
-  const [input, setInput] = useState(edit ? edit.value : "");
-  const inputRef = useRef<any>(null);
+type Edit = {
+  id: number | null;
+  text: string;
+};
+
+export type FormProps = {
+  edit?: Edit;
+  onSubmit: (formData: Edit) => void;
+};
+
+export default function Form({ edit, onSubmit }: FormProps) {
+  const [input, setInput] = useState(edit ? edit.text : "");
+  const inputRef = useRef<ElementRef<"input">>(null);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -10,11 +27,15 @@ export default function Form({ edit, onSubmit }: any) {
     }
   }, []);
 
-  const handleChange = (e: any) => {
+  const handleChange: ComponentProps<"input">["onChange"] = (e) => {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (
+    e:
+      | FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
     onSubmit({
       id: Math.floor(Math.random() * 1000),
@@ -24,7 +45,7 @@ export default function Form({ edit, onSubmit }: any) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="todo-form">
+    <form onSubmit={(e) => handleSubmit(e)} className="todo-form">
       {edit ? (
         <>
           <input
@@ -35,7 +56,7 @@ export default function Form({ edit, onSubmit }: any) {
             ref={inputRef}
             className="todo-input edit"
           />
-          <button onClick={handleSubmit} className="todo-button edit">
+          <button onClick={(e) => handleSubmit(e)} className="todo-button edit">
             Update
           </button>
         </>
